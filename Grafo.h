@@ -16,6 +16,7 @@ void adicionaServidor(Grafo * g, int servidor, int indice);
 void adicionaCliente(Grafo * g, int cliente, int indice);
 void adicionaMonitor(Grafo * g, int monitor, int indice);
 void imprimeGrafo(Grafo* grafo);
+void liberaGrafo(Grafo* grafo);
 
 
 #endif //TRABED2_2020_2_GRAFO_H

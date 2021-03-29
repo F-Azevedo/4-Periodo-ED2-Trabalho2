@@ -81,5 +81,17 @@ void imprimeGrafo(Grafo* grafo){
     }
 }
 
+void liberaGrafo(Grafo* grafo){
 
+    for(int i = 0; i < grafo->nVertices; i++)
+        liberaListaAresta(grafo->arestas[i]);
 
+    free(grafo->arestas);
+
+    free(grafo->Servidores);
+    free(grafo->Clientes);
+    free(grafo->Monitores);
+
+    free(grafo);
+
+}

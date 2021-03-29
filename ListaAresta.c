@@ -25,12 +25,12 @@ ListaAresta* adicionaAresta(ListaAresta* lista, Aresta* aresta){
 
 }
 
-void imprimeLista(ListaAresta * lista){
+void imprimeLista(ListaAresta* lista){
 
     if (lista){ imprimeAresta(lista->aresta); imprimeLista(lista->prox); }
 }
 
-void liberaListaAresta(ListaAresta * lista){
+void liberaListaAresta(ListaAresta* lista){
 
     if (lista) {
         liberaListaAresta(lista->prox);

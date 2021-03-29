@@ -12,6 +12,8 @@ int main(int argc, char* argv[]){
 
     grafo = leitura(argv[1]);
     imprimeGrafo(grafo);
+    liberaGrafo(grafo);
+
     return 0;
 }
 

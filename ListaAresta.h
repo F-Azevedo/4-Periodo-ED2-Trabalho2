@@ -12,5 +12,6 @@ typedef struct listaAresta ListaAresta;
 ListaAresta* iniciaListaAresta();
 ListaAresta* adicionaAresta(ListaAresta* lista, Aresta* aresta);
 void imprimeLista(ListaAresta * lista);
+void liberaListaAresta(ListaAresta* lista);
 
 #endif //TRABED2___2020_2_LISTAARESTA_H
