@@ -1,3 +1,5 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cert-err34-c"
 //
 // Created by Fernando,Igor,Vitor on 23/03/2021.
 //
@@ -65,3 +67,5 @@ Grafo* leitura(char* nomeArquivo){
     fclose(f);
     return grafo;
 }
+
+#pragma clang diagnostic pop
