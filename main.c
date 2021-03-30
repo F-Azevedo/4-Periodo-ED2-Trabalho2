@@ -14,28 +14,6 @@ int main(int argc, char* argv[]){
 
     grafo = leitura(argv[1]);
     //imprimeGrafo(grafo);
-    Heap * heap = inicializaHeap(10);
-    heap_insert(heap, 12);
-    //printHeap(heap);
-    heap_insert(heap, 10);
-    //printHeap(heap);
-    heap_insert(heap, 1);
-    //printHeap(heap);
-    heap_insert(heap, 2);
-    //printHeap(heap);
-    heap_insert(heap, 34);
-    //printHeap(heap);
-    heap_insert(heap, 17);
-    //printHeap(heap);
-    heap_insert(heap, 8);
-    //printHeap(heap);
-    heap_insert(heap, 9);
-    //printHeap(heap);
-    heap_insert(heap, 11);
-    //printHeap(heap);
-    heap_insert(heap, 5);
-    printHeap(heap);
-    freeHeap(heap);
     liberaGrafo(grafo);
 
     return 0;
