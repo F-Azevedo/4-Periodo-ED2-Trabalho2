@@ -95,3 +95,16 @@ void liberaGrafo(Grafo* grafo){
     free(grafo);
 
 }
+
+void dijkstra(Grafo* grafo,int dest,int ori){
+
+    Heap* h = inicializaHeap(grafo->nVertices);
+
+    for(int i = 0;i < grafo->nVertices; i++){
+
+
+    }
+
+
+
+}

@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ListaAresta.h"
+#include "Heap.h"
 
 typedef struct grafo Grafo;
 
