@@ -10,14 +10,26 @@
 #include "Heap.h"
 
 typedef struct grafo Grafo;
+typedef struct vertice Vertice;
 
 Grafo* inicializaGrafo(int nVertices,int qtdServidor,int qtdCliente, int qtdMonitor);
+Vertice* retornaVerticeId(Grafo* g,int id);
+int retornaNumVertices(Grafo* g);
+int retornaQtdServidor(Grafo* g);
+int retornaServidor(Grafo* g, int i);
+int retornaQtdCliente(Grafo* g);
+int retornaCliente(Grafo* g, int i);
+int retornaQtdMonitor(Grafo* g);
+int retornaMonitor(Grafo* g, int i);
 void grafoAdicionaAresta(Grafo* grafo, int fonte, Aresta* aresta);
-void adicionaServidor(Grafo * g, int servidor, int indice);
-void adicionaCliente(Grafo * g, int cliente, int indice);
-void adicionaMonitor(Grafo * g, int monitor, int indice);
+void adicionaServidor(Grafo* g, int servidor, int indice);
+void adicionaCliente(Grafo* g, int cliente, int indice);
+void adicionaMonitor(Grafo* g, int monitor, int indice);
+
+//Funções de Dijkstra
+
+double* dijkstra(Grafo* g,int fonte);
 void imprimeGrafo(Grafo* grafo);
 void liberaGrafo(Grafo* grafo);
-
 
 #endif //TRABED2_2020_2_GRAFO_H

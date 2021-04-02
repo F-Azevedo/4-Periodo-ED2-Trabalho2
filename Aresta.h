@@ -4,10 +4,12 @@
 
 #ifndef TRABED2___2020_2_ARESTA_H
 #define TRABED2___2020_2_ARESTA_H
-
+#include "Vertice.h"
 typedef struct aresta Aresta;
 
-Aresta* iniciaAresta(int destino, double peso);
+Aresta* iniciaAresta(Vertice* destino, double peso);
+Vertice * retornaVerticeDaAresta(Aresta * a);
+double retornaPesoDaAresta(Aresta * a);
 void liberaAresta(Aresta* aresta);
 void imprimeAresta(Aresta* aresta);
 

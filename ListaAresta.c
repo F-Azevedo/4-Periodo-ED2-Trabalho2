@@ -10,6 +10,14 @@ struct listaAresta{
     ListaAresta * prox;
 };
 
+Aresta* retornaAresta(ListaAresta* lista){
+    return lista->aresta;
+}
+
+ListaAresta* retornaListaAresta(ListaAresta* lista){
+    return lista->prox;
+}
+
 ListaAresta* iniciaListaAresta() {
     return NULL;
 }

@@ -2,14 +2,17 @@
 // Created by fernando,igor,vitor on 28/03/2021.
 //
 #include "Grafo.h"
+#include "Vertice.h"
 #include <stdlib.h>
+#include <limits.h>
 
-// O vértice terá um vetor de tamanho V que representará
+#define INF INT_MAX
 
 struct grafo{
     int qtdServidor, qtdCliente, qtdMonitor;
     int* Servidores, *Clientes, *Monitores;
-    ListaAresta** arestas;
+    ListaAresta** arestas; // Lista de adjacencias
+    Vertice** vertices;
     int nVertices;
 };
 
@@ -20,8 +23,12 @@ Grafo* inicializaGrafo(int nVertices,int qtdServidor,int qtdCliente, int qtdMoni
     novo->arestas = malloc(nVertices * sizeof(ListaAresta *));
     novo->nVertices = nVertices;
 
-    for (int i = 0; i < nVertices; i++)
+    novo->vertices = malloc(sizeof(Vertice*) * nVertices);
+
+    for (int i = 0; i < nVertices; i++){
         novo->arestas[i] = iniciaListaAresta();
+        novo->vertices[i] = inicializaVertice(i);
+    }
 
     novo->qtdServidor = qtdServidor;
     novo->qtdCliente  = qtdCliente;
@@ -34,6 +41,19 @@ Grafo* inicializaGrafo(int nVertices,int qtdServidor,int qtdCliente, int qtdMoni
     return novo;
 
 }
+
+Vertice* retornaVerticeId(Grafo* g,int id){ return g->vertices[id]; }
+
+int retornaNumVertices(Grafo* g) { return g->nVertices; }
+
+int retornaQtdServidor(Grafo* g) { return g->qtdServidor; }
+int retornaServidor(Grafo* g, int i) { return g->Servidores[i]; }
+
+int retornaQtdCliente(Grafo* g) { return g->qtdCliente; }
+int retornaCliente(Grafo* g, int i) { return g->Clientes[i]; }
+
+int retornaQtdMonitor(Grafo* g) { return g->qtdMonitor; }
+int retornaMonitor(Grafo* g, int i) { return g->Monitores[i]; }
 
 void adicionaServidor(Grafo * g, int servidor, int indice){
 
@@ -92,19 +112,57 @@ void liberaGrafo(Grafo* grafo){
     free(grafo->Clientes);
     free(grafo->Monitores);
 
+    for (int i=0; i < grafo->nVertices; i++) liberaVertice(grafo->vertices[i]);
+    free(grafo->vertices);
     free(grafo);
 
 }
 
-void dijkstra(Grafo* grafo,int dest,int ori){
+//
+//FUNÇÕES DE DIJKSTRA
+//
 
-    Heap* h = inicializaHeap(grafo->nVertices);
-
-    for(int i = 0;i < grafo->nVertices; i++){
-
-
+static void inicializa_single_sorce(Grafo* g, int fonte){
+    for(int i = 0;i < g->nVertices; i++){
+        inicializaDistancia(g->vertices[i], INF);
     }
 
+    inicializaDistancia(g->vertices[fonte],0);
+}
 
+static void relax(Vertice * u, Vertice * v, double dist, Heap* heap,Grafo *g){
+    if(retornaDistancia(v) > (retornaDistancia(u) + dist)) {
+        inicializaDistancia(v, (retornaDistancia(u) + dist));
+        heap_insert(heap,g->vertices[retornaId(v)]);
+    }
+}
+
+double* dijkstra(Grafo* g,int fonte){
+
+    inicializa_single_sorce(g,fonte);
+
+    Heap* h = inicializaHeap(g->nVertices);
+
+    heap_insert(h,g->vertices[fonte]);
+
+    while(!heap_isEmpty(h)){
+
+        Vertice* u = heap_delmin(h);
+        ListaAresta* listaAdjU = g->arestas[retornaId(u)];
+
+        for(listaAdjU ; listaAdjU != NULL; listaAdjU = retornaListaAresta(listaAdjU)){
+            Aresta* ar = retornaAresta(listaAdjU);
+            relax(u, retornaVerticeDaAresta(ar), retornaPesoDaAresta(ar), h, g);
+        }
+    }
+    freeHeap(h);
+
+    double* distancias = malloc(g->nVertices * sizeof(double));
+
+    for(int i=0; i<g->nVertices; i++) {
+        distancias[i] = retornaDistancia(g->vertices[i]);
+    }
+
+    return distancias;
 
 }

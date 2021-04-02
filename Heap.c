@@ -6,16 +6,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define key(A) (A)
+#define key(A) retornaDistancia(A)
 #define less(A, B) (key(A) < key(B))
-#define exch(A, B) { int t = A; A = B; B = t; }
+#define exch(A, B) { Vertice* t = A; A = B; B = t; }
 #define compexch(A, B) if (less(B, A)) exch(A, B)
 
-struct heap{int* vet; int size;};
+struct heap{Vertice** vet; int size;};
 
 Heap* inicializaHeap(int tam){
     Heap* heap = malloc(sizeof(*heap));
-    heap->vet = (int*) malloc((tam+1) * sizeof(int));
+    heap->vet = malloc((tam+1) * sizeof(Vertice*));
     heap->size = 0;
     return heap;
 }
@@ -39,19 +39,21 @@ void fix_down(Heap* heap, int k){
     }
 }
 
-void heap_insert(Heap* heap,int chave){
+void heap_insert(Heap* heap, Vertice* chave){
     heap->size++;
     heap->vet[heap->size] = chave;
     fix_up(heap, heap->size);
 }
 
-int heap_delmin(Heap* heap){
-    int min = heap->vet[1];
+Vertice* heap_delmin(Heap* heap){
+    Vertice* min = heap->vet[1];
     exch(heap->vet[1], heap->vet[heap->size]);
     heap->size--;
     fix_down(heap, 1);
     return min;
 }
+
+int heap_isEmpty(Heap* heap){ return heap->size == 0 ? 1: 0; }
 
 void freeHeap(Heap* heap){
     free(heap->vet);
@@ -59,9 +61,8 @@ void freeHeap(Heap* heap){
 }
 
 void printHeap(Heap* heap){
-
     printf("\n\nArray look:\n");
-    for (int i=1; i <= heap->size; i++) printf("%d, ", heap->vet[i]);
+    for (int i=1; i <= heap->size; i++) imprimeVertice(heap->vet[i]);
     printf("\n\n");
 }
 

@@ -11,6 +11,8 @@ typedef struct listaAresta ListaAresta;
 
 ListaAresta* iniciaListaAresta();
 ListaAresta* adicionaAresta(ListaAresta* lista, Aresta* aresta);
+Aresta* retornaAresta(ListaAresta* lista);
+ListaAresta* retornaListaAresta(ListaAresta* lista);
 void imprimeLista(ListaAresta * lista);
 void liberaListaAresta(ListaAresta* lista);
 
