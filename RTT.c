@@ -72,3 +72,10 @@ void imprimeAtalhos(Atalhos * at){
     }
 
 }
+
+void liberaAtalhos(Atalhos * at){
+
+    for (int i=0; i < at->nlin; i++) free(at->mat[i]);
+    free(at->mat);
+    free(at);
+}
