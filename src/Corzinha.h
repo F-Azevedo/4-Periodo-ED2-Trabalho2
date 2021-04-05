@@ -9,12 +9,11 @@
 // https://dev.to/ifenna__/adding-colors-to-bash-scripts-48g4
 
 // Colors
-#define BLACK       "30m"
+#define PRETO       "30m"
 #define VERMELHO    "31m"
 #define VERDE       "32m"
 #define AMARELO     "33m"
 #define AZUL        "34m"
-#define VERDE       "34m"
 #define MAGENTA     "35m"
 #define CIANO       "36m"
 #define CINZA_CLARO "37m"

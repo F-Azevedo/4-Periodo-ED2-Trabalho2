@@ -7,8 +7,6 @@
 #include "Grafo.h"
 #include "RTT.h"
 
-
-
 Grafo* leitura(char* nomeArquivo);
 void calculaDistancias(Atalhos* at, Grafo* g);
 

@@ -4,7 +4,6 @@
 
 #include "RTT.h"
 #include "Grafo.h"
-
 #include <limits.h>
 #include "Corzinha.h"
 
@@ -28,6 +27,8 @@ Atalhos * inicializaAtalhos(Grafo* g){
     novo->nlin = retornaNumVertices(g);
     novo->ncol = retornaNumVertices(g);
     novo->mat = malloc(sizeof(double*) * novo->nlin);
+    // Inicializa todas as linha como NULL
+    for (int i=0; i < novo->nlin; i++) novo->mat[i] = NULL;
     return novo;
 }
 
@@ -56,7 +57,7 @@ double RTT_Relativo(Atalhos* a, int p, int q, Grafo* grafo){
 
 double RTT_Final(Atalhos * at, int p, int q, Grafo * g){
 
-    return RTT_Relativo(at, p, q, g) / RTT(at, p, q);
+    return (retornaQtdMonitor(g)? RTT_Relativo(at, p, q, g) : RTT(at, p, q)) / RTT(at, p, q);
 }
 
 void imprimeAtalhos(Atalhos * at){
@@ -65,7 +66,6 @@ void imprimeAtalhos(Atalhos * at){
     for (int i=0; i < at->nlin; i++) {
         if(at->mat[i] != NULL) {
             for (int j = 0; j < at->ncol; j++) printf("%.1lf ", at->mat[i][j]);
-
             printf("\n");
         }
     }
@@ -74,7 +74,7 @@ void imprimeAtalhos(Atalhos * at){
 
 void liberaAtalhos(Atalhos * at){
 
-    for (int i=0; i < at->nlin; i++) free(at->mat[i]);
+    for (int i=0; i < at->nlin; i++) if (at->mat[i]) free(at->mat[i]);
     free(at->mat);
     free(at);
 }
