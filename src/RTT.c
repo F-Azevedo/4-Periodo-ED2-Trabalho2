@@ -6,11 +6,10 @@
 #include "Grafo.h"
 
 #include <limits.h>
+#include "Corzinha.h"
 
 #define INF INT_MAX
 
-#define RED "\033[95m"
-#define RESET "\033[0m"
 
 struct atalhos{
 
@@ -62,7 +61,7 @@ double RTT_Final(Atalhos * at, int p, int q, Grafo * g){
 
 void imprimeAtalhos(Atalhos * at){
 
-    printf(RED "Atalhos:" RESET "\n");
+    printf(NORMAL MAGENTA "Atalhos:" RESET "\n");
     for (int i=0; i < at->nlin; i++) {
         if(at->mat[i] != NULL) {
             for (int j = 0; j < at->ncol; j++) printf("%.1lf ", at->mat[i][j]);
@@ -78,4 +77,16 @@ void liberaAtalhos(Atalhos * at){
     for (int i=0; i < at->nlin; i++) free(at->mat[i]);
     free(at->mat);
     free(at);
+}
+
+void calculaTodosRTTFinal(Atalhos * at, Grafo * grafo){
+
+    //Calcula rtt real
+    double RTT_FINAL;
+    for(int i = 0; i < retornaQtdServidor(grafo); i++){
+        for(int j = 0; j < retornaQtdCliente(grafo); j++) {
+            RTT_FINAL = RTT_Final(at, retornaServidor(grafo,i), retornaCliente(grafo,j), grafo);
+            printf("%d %d %.16lf\n", retornaServidor(grafo,i), retornaCliente(grafo,j), RTT_FINAL);
+        }
+    }
 }

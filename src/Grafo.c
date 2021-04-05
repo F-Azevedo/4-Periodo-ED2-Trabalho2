@@ -5,6 +5,7 @@
 #include "Vertice.h"
 #include <stdlib.h>
 #include <limits.h>
+#include "Corzinha.h"
 
 #define INF INT_MAX
 
@@ -81,16 +82,16 @@ void grafoAdicionaAresta(Grafo* grafo, int fonte, Aresta* aresta){
 
 void imprimeGrafo(Grafo* grafo){
 
-    printf("QTD servidor = %d\n", grafo->qtdServidor);
+    printf(NORMAL AMARELO "QTD servidor = " RESET "%d\n", grafo->qtdServidor);
     for(int i = 0; i < grafo->qtdServidor; i++)
         printf("Servidor = %d\n", grafo->Servidores[i]);
 
-    printf("QTD cliente = %d\n",grafo->qtdCliente);
+    printf(NORMAL AMARELO "QTD cliente = " RESET "%d\n",grafo->qtdCliente);
     for(int i = 0;i< grafo->qtdCliente;i++){
         printf("Cliente = %d\n",grafo->Clientes[i]);
     }
 
-    printf("QTD monitor = %d\n", grafo->qtdMonitor);
+    printf(NORMAL VERDE "QTD monitor = " RESET "%d\n", grafo->qtdMonitor);
     for (int i=0; i < grafo->qtdMonitor; i++) printf("Monitor: %d\n", grafo->Monitores[i]);
 
     printf("\n");

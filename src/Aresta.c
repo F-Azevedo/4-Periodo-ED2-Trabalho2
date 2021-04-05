@@ -5,9 +5,7 @@
 #include "Aresta.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-#define VERDE "\033[34m"
-#define RESET "\033[0m"
+#include "Corzinha.h"
 
 struct aresta{
     Vertice* destino;
@@ -33,7 +31,7 @@ void liberaAresta(Aresta* aresta) {
 }
 
 void imprimeAresta(Aresta* aresta){
-    printf(VERDE "Aresta:\n" RESET);
+    printf(NORMAL VERDE "Aresta:\n" RESET);
     imprimeVertice(aresta->destino);
     //printf("Vertice id= %d\n", retornaId(aresta->destino));
     printf("Peso: %lf\n", aresta->peso);

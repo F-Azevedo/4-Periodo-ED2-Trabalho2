@@ -10,40 +10,17 @@
 
 
 Grafo* leitura(char* nomeArquivo);
+void calculaDistancias(Atalhos* at, Grafo* g);
 
 int main(int argc, char* argv[]){
 
     Grafo* grafo;
-
     grafo = leitura(argv[1]);
-
     Atalhos* at = inicializaAtalhos(grafo);
-
-    //Calcular para as fontes
-    for(int j=0; j < retornaQtdServidor(grafo); j++){
-        insereLinhaAtalho(at, dijkstra(grafo, retornaServidor(grafo, j)), retornaServidor(grafo, j));
-    }
-    //Calcular para os clientes
-    for(int j=0; j < retornaQtdCliente(grafo); j++){
-        insereLinhaAtalho(at, dijkstra(grafo, retornaCliente(grafo, j)), retornaCliente(grafo, j));
-    }
-    //Calcular para os monitores
-    for(int j=0; j < retornaQtdMonitor(grafo); j++){
-        insereLinhaAtalho(at, dijkstra(grafo, retornaMonitor(grafo, j)), retornaMonitor(grafo, j));
-    }
-
+    calculaDistancias(at, grafo);
     //imprimeAtalhos(at);
-
-    //Calcula rtt real
-    double RTT_FINAL;
-    for(int i = 0; i < retornaQtdServidor(grafo); i++){
-        for(int j = 0; j < retornaQtdCliente(grafo); j++) {
-            RTT_FINAL = RTT_Final(at, retornaServidor(grafo,i), retornaCliente(grafo,j), grafo);
-            printf("%d %d %.16lf\n", retornaServidor(grafo,i), retornaCliente(grafo,j), RTT_FINAL);
-        }
-    }
+    calculaTodosRTTFinal(at, grafo);
     //printf("\n\n");
-
     //imprimeGrafo(grafo);
     liberaGrafo(grafo);
     liberaAtalhos(at);
@@ -99,4 +76,21 @@ Grafo* leitura(char* nomeArquivo){
     fclose(f);
     return grafo;
 }
+
+void calculaDistancias(Atalhos* atalhos, Grafo* grafo){
+
+    //Calcular para as fontes
+    for(int j=0; j < retornaQtdServidor(grafo); j++){
+        insereLinhaAtalho(atalhos, dijkstra(grafo, retornaServidor(grafo, j)), retornaServidor(grafo, j));
+    }
+    //Calcular para os clientes
+    for(int j=0; j < retornaQtdCliente(grafo); j++){
+        insereLinhaAtalho(atalhos, dijkstra(grafo, retornaCliente(grafo, j)), retornaCliente(grafo, j));
+    }
+    //Calcular para os monitores
+    for(int j=0; j < retornaQtdMonitor(grafo); j++){
+        insereLinhaAtalho(atalhos, dijkstra(grafo, retornaMonitor(grafo, j)), retornaMonitor(grafo, j));
+    }
+}
+
 #pragma clang diagnostic pop

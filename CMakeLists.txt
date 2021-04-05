@@ -4,4 +4,4 @@ project(TrabED2___2020_2 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(TrabED2___2020_2
-        main.c Grafo.c Grafo.h Aresta.c Aresta.h ListaAresta.c ListaAresta.h Heap.c Heap.h Vertice.c Vertice.h RTT.c RTT.h)
+        src/main.c src/Grafo.c src/Grafo.h src/Aresta.c src/Aresta.h src/ListaAresta.c src/ListaAresta.h src/Heap.c src/Heap.h src/Vertice.c src/Vertice.h src/RTT.c src/RTT.h src/Corzinha.h)

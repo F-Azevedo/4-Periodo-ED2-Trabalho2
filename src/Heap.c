@@ -5,6 +5,7 @@
 #include "Heap.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Corzinha.h"
 
 #define key(A) retornaDistancia(A)
 #define less(A, B) (key(A) < key(B))
@@ -61,7 +62,7 @@ void freeHeap(Heap* heap){
 }
 
 void printHeap(Heap* heap){
-    printf("\n\nArray look:\n");
+    printf("\n\n" NORMAL AZUL "Heap Array look:" RESET "\n");
     for (int i=1; i <= heap->size; i++) imprimeVertice(heap->vet[i]);
     printf("\n\n");
 }

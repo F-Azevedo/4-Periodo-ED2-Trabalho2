@@ -5,6 +5,7 @@
 #include "Vertice.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Corzinha.h"
 
 struct vertice{
     double distancia;
@@ -26,5 +27,5 @@ void inicializaDistancia(Vertice* v, double dis){ v->distancia = dis; }
 void liberaVertice(Vertice* v){ free(v); }
 
 void imprimeVertice(Vertice * v){
-    printf("\033[94mVertice:\033[0m id = %d // distância %lf\n", v->id, v->distancia);
+    printf(NORMAL CIANO "Vertice:" RESET " id = %d // distância %lf\n", v->id, v->distancia);
 }
