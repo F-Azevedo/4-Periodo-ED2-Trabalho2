@@ -4,15 +4,14 @@
 
 #include "Aresta.h"
 #include <stdlib.h>
-#include <stdio.h>
-#include "Corzinha.h"
 
+//Aresta só tem o vértice de destino pois ela estara na lista de arestas relativa ao vértice de origem.
 struct aresta{
     Vertice* destino;
     double peso;
 };
 
-// Inicia Aresta direcionada com peso
+// Inicia Aresta direcionada com peso.
 Aresta* iniciaAresta(Vertice* destino, double peso){
     Aresta* novo = (Aresta*) malloc(sizeof(Aresta));
 
@@ -28,11 +27,4 @@ double retornaPesoDaAresta(Aresta * a){ return a->peso; }
 
 void liberaAresta(Aresta* aresta) {
     free(aresta);
-}
-
-void imprimeAresta(Aresta* aresta){
-    printf(NORMAL VERDE "Aresta:\n" RESET);
-    imprimeVertice(aresta->destino);
-    //printf("Vertice id= %d\n", retornaId(aresta->destino));
-    printf("Peso: %lf\n", aresta->peso);
 }
