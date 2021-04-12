@@ -25,7 +25,6 @@ void grafoAdicionaAresta(Grafo* grafo, int fonte, Aresta* aresta);
 void adicionaServidor(Grafo* g, int servidor, int indice);
 void adicionaCliente(Grafo* g, int cliente, int indice);
 void adicionaMonitor(Grafo* g, int monitor, int indice);
-void imprimeGrafo(Grafo* grafo);
 void liberaGrafo1(Grafo* grafo);
 void liberaGrafo2(Grafo* grafo);
 
