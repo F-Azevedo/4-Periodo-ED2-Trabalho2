@@ -16,11 +16,12 @@ int main(int argc, char* argv[]){
     grafo = leitura(argv[1]);
     Atalhos* at = inicializaAtalhos(grafo);
     calculaDistancias(at, grafo);
+    liberaGrafo1(grafo);
     //imprimeAtalhos(at);
     calculaTodosRTTFinal(at, grafo);
     //printf("\n\n");
     //imprimeGrafo(grafo);
-    liberaGrafo(grafo);
+    liberaGrafo2(grafo);
     liberaAtalhos(at);
 
     return 0;

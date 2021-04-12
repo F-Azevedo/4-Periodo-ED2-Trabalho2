@@ -102,19 +102,26 @@ void imprimeGrafo(Grafo* grafo){
     }
 }
 
-void liberaGrafo(Grafo* grafo){
+//Libera a parte pesada na memória
+void liberaGrafo1(Grafo* grafo){
 
     for(int i = 0; i < grafo->nVertices; i++)
         liberaListaAresta(grafo->arestas[i]);
 
     free(grafo->arestas);
 
+    for (int i=0; i < grafo->nVertices; i++) liberaVertice(grafo->vertices[i]);
+    free(grafo->vertices);
+
+}
+
+//Libera o resto que precisava pra rodar o programa
+void liberaGrafo2(Grafo* grafo){
+
     free(grafo->Servidores);
     free(grafo->Clientes);
     free(grafo->Monitores);
 
-    for (int i=0; i < grafo->nVertices; i++) liberaVertice(grafo->vertices[i]);
-    free(grafo->vertices);
     free(grafo);
 
 }

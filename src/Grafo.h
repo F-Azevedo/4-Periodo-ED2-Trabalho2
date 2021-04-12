@@ -25,11 +25,11 @@ void grafoAdicionaAresta(Grafo* grafo, int fonte, Aresta* aresta);
 void adicionaServidor(Grafo* g, int servidor, int indice);
 void adicionaCliente(Grafo* g, int cliente, int indice);
 void adicionaMonitor(Grafo* g, int monitor, int indice);
+void imprimeGrafo(Grafo* grafo);
+void liberaGrafo1(Grafo* grafo);
+void liberaGrafo2(Grafo* grafo);
 
 //Funções de Dijkstra
-
 double* dijkstra(Grafo* g,int fonte);
-void imprimeGrafo(Grafo* grafo);
-void liberaGrafo(Grafo* grafo);
 
 #endif //TRABED2_2020_2_GRAFO_H
