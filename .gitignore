@@ -53,8 +53,9 @@ dkms.conf
 
 cmake-build-debug
 
-/entrada
-/saida
+# Entrada e saída dos testes
+/entradas/entrada
+/saidas/saida
 
 # Executavel do script
 rede
