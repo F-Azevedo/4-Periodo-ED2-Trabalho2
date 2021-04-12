@@ -3,14 +3,11 @@
 //
 
 #include "Heap.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include "Corzinha.h"
 
 #define key(A) retornaDistancia(A)
 #define less(A, B) (key(A) < key(B))
 #define exch(A, B) { Vertice* t = A; A = B; B = t; }
-#define compexch(A, B) if (less(B, A)) exch(A, B)
 
 struct heap{Vertice** vet; int size;};
 
@@ -60,10 +57,3 @@ void freeHeap(Heap* heap){
     free(heap->vet);
     free(heap);
 }
-
-void printHeap(Heap* heap){
-    printf("\n\n" NORMAL AZUL "Heap Array look:" RESET "\n");
-    for (int i=1; i <= heap->size; i++) imprimeVertice(heap->vet[i]);
-    printf("\n\n");
-}
-
