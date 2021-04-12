@@ -1,5 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cert-err34-c"
 //
 // Created by Fernando,Igor,Vitor on 23/03/2021.
 //
@@ -12,16 +10,25 @@ void calculaDistancias(Atalhos* at, Grafo* g);
 
 int main(int argc, char* argv[]){
 
-    Grafo* grafo;
-    grafo = leitura(argv[1]);
+    //Faz a leitura do grafo do arquivo passado como parâmetro.
+    Grafo* grafo = leitura(argv[1]);
+
+    //Inicializa nossa matriz de atalhos com NULL.
     Atalhos* at = inicializaAtalhos(grafo);
+
+    //Faz o Dijkstra para os Servidores, Clientes e Monitores e os insere na matriz de atalhos.
     calculaDistancias(at, grafo);
+
+    //Libera as partes relacionadas ao armazenamento dos vértices e arestas para otimizar o espaço utilizado.
     liberaGrafo1(grafo);
-    //imprimeAtalhos(at);
+
+    //Calcula e imprime os RTT's finais.
     calculaTodosRTTFinal(at, grafo);
-    //printf("\n\n");
-    //imprimeGrafo(grafo);
+
+    //Libera as partes de grafo que identifica quem é Servidor, Monitor e Cliente.
     liberaGrafo2(grafo);
+
+    //Libera a matriz degenerada de atalhos.
     liberaAtalhos(at);
 
     return 0;
@@ -63,7 +70,7 @@ Grafo* leitura(char* nomeArquivo){
     }
 
     Aresta* aresta;
-
+    //Insere as arestas de cada vértice do grafo.
     for(int i=0; i < nArestas; i++){
         int fonte, destino;
         double peso;
@@ -78,18 +85,16 @@ Grafo* leitura(char* nomeArquivo){
 
 void calculaDistancias(Atalhos* atalhos, Grafo* grafo){
 
-    //Calcular para as fontes
+    //Calcular para os Servidores.
     for(int j=0; j < retornaQtdServidor(grafo); j++){
         insereLinhaAtalho(atalhos, dijkstra(grafo, retornaServidor(grafo, j)), retornaServidor(grafo, j));
     }
-    //Calcular para os clientes
+    //Calcular para os Clientes.
     for(int j=0; j < retornaQtdCliente(grafo); j++){
         insereLinhaAtalho(atalhos, dijkstra(grafo, retornaCliente(grafo, j)), retornaCliente(grafo, j));
     }
-    //Calcular para os monitores
+    //Calcular para os Monitores.
     for(int j=0; j < retornaQtdMonitor(grafo); j++){
         insereLinhaAtalho(atalhos, dijkstra(grafo, retornaMonitor(grafo, j)), retornaMonitor(grafo, j));
     }
 }
-
-#pragma clang diagnostic pop
