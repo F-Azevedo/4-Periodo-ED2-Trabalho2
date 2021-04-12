@@ -9,11 +9,10 @@
 
 typedef struct listaAresta ListaAresta;
 
-ListaAresta* iniciaListaAresta();
-ListaAresta* adicionaAresta(ListaAresta* lista, Aresta* aresta);
 Aresta* retornaAresta(ListaAresta* lista);
+ListaAresta* iniciaListaAresta();
 ListaAresta* retornaListaAresta(ListaAresta* lista);
-void imprimeLista(ListaAresta * lista);
+ListaAresta* adicionaAresta(ListaAresta* lista, Aresta* aresta);
 void liberaListaAresta(ListaAresta* lista);
 
 #endif //TRABED2___2020_2_LISTAARESTA_H
